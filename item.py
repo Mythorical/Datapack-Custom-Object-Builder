@@ -50,7 +50,10 @@ def itembuilder():
         print("Item name: " + itemName)
         print("File path: " + itemPath)
         print("Item type: " + itemType)
-        print("Item texture: " + itemTextureType)
+        if itemTextureType == "skip":
+            print("Skipped item texture!")
+        else:
+            print("Item texture: " + itemTextureType)
         confirmation = str(input("|> Are all of these correct (y/n):\n")).lower()
         if confirmation == "y":
             break
