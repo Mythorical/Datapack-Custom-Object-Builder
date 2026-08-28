@@ -8,10 +8,6 @@ import os
 
 def itembuilder():
     from main import printHeader, checkPathExistance, clearTerminal
-    filetypes = [
-        ".mcfunction",
-        ".json"
-    ]
     validItemTypes = [
         "interactive",
         "debug"
@@ -62,4 +58,15 @@ def itembuilder():
             itembuilder()
         else:
             ("ERROR: Invalid answer!")
-    
+    time.sleep(0.5)
+
+    itemPath = os.path.join(itemPath, itemName)
+    if checkPathExistance(itemPath) != True:
+        os.mkdir(itemName)
+    fileType = ".mcfunction"
+    itemPath = os.path.join(itemPath, itemName) + fileType
+    with open(itemPath, "w") as nf:
+        if itemType == "debug":
+            nf.write('give @s poisonous_potato[custom_name="' + itemName + '",!food,!consumable]')
+        if itemType == "interactive":
+            nf.write('give @s poisonous_potato[custom_name="' + itemName + '"]')
